@@ -1,0 +1,14 @@
+.\objects\pwm.o: Hardware\pwm.c
+.\objects\pwm.o: Hardware\pwm.h
+.\objects\pwm.o: .\Startup\stm32f10x.h
+.\objects\pwm.o: .\Startup\core_cm3.h
+.\objects\pwm.o: F:\ProgramFiles\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+.\objects\pwm.o: .\Startup\system_stm32f10x.h
+.\objects\pwm.o: .\User\stm32f10x_conf.h
+.\objects\pwm.o: .\Library\stm32f10x_adc.h
+.\objects\pwm.o: .\Startup\stm32f10x.h
+.\objects\pwm.o: .\Library\stm32f10x_gpio.h
+.\objects\pwm.o: .\Library\stm32f10x_i2c.h
+.\objects\pwm.o: .\Library\stm32f10x_rcc.h
+.\objects\pwm.o: .\Library\stm32f10x_tim.h
+.\objects\pwm.o: .\Library\misc.h

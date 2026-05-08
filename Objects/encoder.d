@@ -1,0 +1,14 @@
+.\objects\encoder.o: Hardware\encoder.c
+.\objects\encoder.o: Hardware\encoder.h
+.\objects\encoder.o: .\Startup\stm32f10x.h
+.\objects\encoder.o: .\Startup\core_cm3.h
+.\objects\encoder.o: F:\ProgramFiles\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+.\objects\encoder.o: .\Startup\system_stm32f10x.h
+.\objects\encoder.o: .\User\stm32f10x_conf.h
+.\objects\encoder.o: .\Library\stm32f10x_adc.h
+.\objects\encoder.o: .\Startup\stm32f10x.h
+.\objects\encoder.o: .\Library\stm32f10x_gpio.h
+.\objects\encoder.o: .\Library\stm32f10x_i2c.h
+.\objects\encoder.o: .\Library\stm32f10x_rcc.h
+.\objects\encoder.o: .\Library\stm32f10x_tim.h
+.\objects\encoder.o: .\Library\misc.h

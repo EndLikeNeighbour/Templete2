@@ -1,0 +1,14 @@
+.\objects\stm32f10x_dac.o: Library\stm32f10x_dac.c
+.\objects\stm32f10x_dac.o: Library\stm32f10x_dac.h
+.\objects\stm32f10x_dac.o: .\Startup\stm32f10x.h
+.\objects\stm32f10x_dac.o: .\Startup\core_cm3.h
+.\objects\stm32f10x_dac.o: F:\ProgramFiles\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+.\objects\stm32f10x_dac.o: .\Startup\system_stm32f10x.h
+.\objects\stm32f10x_dac.o: .\User\stm32f10x_conf.h
+.\objects\stm32f10x_dac.o: .\Library\stm32f10x_adc.h
+.\objects\stm32f10x_dac.o: .\Startup\stm32f10x.h
+.\objects\stm32f10x_dac.o: .\Library\stm32f10x_gpio.h
+.\objects\stm32f10x_dac.o: .\Library\stm32f10x_i2c.h
+.\objects\stm32f10x_dac.o: .\Library\stm32f10x_rcc.h
+.\objects\stm32f10x_dac.o: .\Library\stm32f10x_tim.h
+.\objects\stm32f10x_dac.o: .\Library\misc.h

@@ -1,0 +1,14 @@
+.\objects\mcp4131.o: Hardware\mcp4131.c
+.\objects\mcp4131.o: Hardware\mcp4131.h
+.\objects\mcp4131.o: .\Startup\stm32f10x.h
+.\objects\mcp4131.o: .\Startup\core_cm3.h
+.\objects\mcp4131.o: F:\ProgramFiles\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+.\objects\mcp4131.o: .\Startup\system_stm32f10x.h
+.\objects\mcp4131.o: .\User\stm32f10x_conf.h
+.\objects\mcp4131.o: .\Library\stm32f10x_adc.h
+.\objects\mcp4131.o: .\Startup\stm32f10x.h
+.\objects\mcp4131.o: .\Library\stm32f10x_gpio.h
+.\objects\mcp4131.o: .\Library\stm32f10x_i2c.h
+.\objects\mcp4131.o: .\Library\stm32f10x_rcc.h
+.\objects\mcp4131.o: .\Library\stm32f10x_tim.h
+.\objects\mcp4131.o: .\Library\misc.h

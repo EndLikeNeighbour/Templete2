@@ -1,0 +1,15 @@
+.\objects\oled.o: Hardware\oled.c
+.\objects\oled.o: Hardware\oled.h
+.\objects\oled.o: .\Startup\stm32f10x.h
+.\objects\oled.o: .\Startup\core_cm3.h
+.\objects\oled.o: F:\ProgramFiles\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+.\objects\oled.o: .\Startup\system_stm32f10x.h
+.\objects\oled.o: .\User\stm32f10x_conf.h
+.\objects\oled.o: .\Library\stm32f10x_adc.h
+.\objects\oled.o: .\Startup\stm32f10x.h
+.\objects\oled.o: .\Library\stm32f10x_gpio.h
+.\objects\oled.o: .\Library\stm32f10x_i2c.h
+.\objects\oled.o: .\Library\stm32f10x_rcc.h
+.\objects\oled.o: .\Library\stm32f10x_tim.h
+.\objects\oled.o: .\Library\misc.h
+.\objects\oled.o: Hardware\font.h

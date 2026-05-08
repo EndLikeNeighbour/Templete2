@@ -1,0 +1,17 @@
+.\objects\main.o: User\main.c
+.\objects\main.o: .\Startup\stm32f10x.h
+.\objects\main.o: .\Startup\core_cm3.h
+.\objects\main.o: F:\ProgramFiles\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+.\objects\main.o: .\Startup\system_stm32f10x.h
+.\objects\main.o: .\User\stm32f10x_conf.h
+.\objects\main.o: .\Library\stm32f10x_adc.h
+.\objects\main.o: .\Startup\stm32f10x.h
+.\objects\main.o: .\Library\stm32f10x_gpio.h
+.\objects\main.o: .\Library\stm32f10x_i2c.h
+.\objects\main.o: .\Library\stm32f10x_rcc.h
+.\objects\main.o: .\Library\stm32f10x_tim.h
+.\objects\main.o: .\Library\misc.h
+.\objects\main.o: .\Hardware\oled.h
+.\objects\main.o: .\Hardware\key.h
+.\objects\main.o: User\delay.h
+.\objects\main.o: .\Hardware\font_index.h

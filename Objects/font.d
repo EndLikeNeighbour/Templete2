@@ -1,0 +1,14 @@
+.\objects\font.o: Hardware\font.c
+.\objects\font.o: Hardware\font.h
+.\objects\font.o: .\Startup\stm32f10x.h
+.\objects\font.o: .\Startup\core_cm3.h
+.\objects\font.o: F:\ProgramFiles\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+.\objects\font.o: .\Startup\system_stm32f10x.h
+.\objects\font.o: .\User\stm32f10x_conf.h
+.\objects\font.o: .\Library\stm32f10x_adc.h
+.\objects\font.o: .\Startup\stm32f10x.h
+.\objects\font.o: .\Library\stm32f10x_gpio.h
+.\objects\font.o: .\Library\stm32f10x_i2c.h
+.\objects\font.o: .\Library\stm32f10x_rcc.h
+.\objects\font.o: .\Library\stm32f10x_tim.h
+.\objects\font.o: .\Library\misc.h
