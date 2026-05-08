@@ -22,41 +22,41 @@ key_state KEY_Scan(void)
 {
     if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_8) == RESET)
     {
-        Key_DelayMs(20);
+        Key_DelayMs(5);
         while(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_8) == RESET);
-        Key_DelayMs(20);
+        Key_DelayMs(5);
         return KEY_AMP_UP;
     }
 
     if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_9) == RESET)
     {
-        Key_DelayMs(20);
+        Key_DelayMs(5);
         while(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_9) == RESET);
-        Key_DelayMs(20);
+        Key_DelayMs(5);
         return KEY_AMP_DOWN;
     }
 
     if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_10) == RESET)
     {
-        Key_DelayMs(20);
+        Key_DelayMs(5);
         while(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_10) == RESET);
-        Key_DelayMs(20);
+        Key_DelayMs(5);
         return KEY_FREQ_UP;
     }
 
     if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_11) == RESET)
     {
-        Key_DelayMs(20);
+        Key_DelayMs(5);
         while(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_11) == RESET);
-        Key_DelayMs(20);
+        Key_DelayMs(5);
         return KEY_FREQ_DOWN;
     }
 
     if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == RESET)
     {
-        Key_DelayMs(20);
+        Key_DelayMs(5);
         while(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_12) == RESET);
-        Key_DelayMs(20);
+        Key_DelayMs(5);
         return KEY_MEASURE;
     }
 

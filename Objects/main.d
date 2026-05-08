@@ -15,3 +15,6 @@
 .\objects\main.o: .\Hardware\key.h
 .\objects\main.o: User\delay.h
 .\objects\main.o: .\Hardware\font_index.h
+.\objects\main.o: .\Hardware\pwm.h
+.\objects\main.o: .\Hardware\mcp4131.h
+.\objects\main.o: .\Hardware\adc.h
