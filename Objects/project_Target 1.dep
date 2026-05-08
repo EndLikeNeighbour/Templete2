@@ -415,7 +415,7 @@ I (.\Library\stm32f10x_rcc.h)(0x4D783BB4)
 I (.\Library\stm32f10x_tim.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 F (.\Hardware\font.h)(0x69FDE455)()
-F (.\Hardware\key.c)(0x69FDD8CB)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\User -I .\Library -I .\Startup -I .\Hardware-IF:\ProgramFiles\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="537" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\key.o --omf_browse .\objects\key.crf --depend .\objects\key.d)
+F (.\Hardware\key.c)(0x69FE1DA0)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\User -I .\Library -I .\Startup -I .\Hardware-IF:\ProgramFiles\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="537" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\key.o --omf_browse .\objects\key.crf --depend .\objects\key.d)
 I (Hardware\key.h)(0x69F45852)
 I (.\Startup\stm32f10x.h)(0x4D783CB4)
 I (.\Startup\core_cm3.h)(0x4D523B58)
