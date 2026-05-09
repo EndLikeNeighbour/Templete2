@@ -6,38 +6,45 @@
 #include "pwm.h"
 #include "mcp4131.h"
 #include "adc.h"
+#include "freqmeter.h"
 
 int main(void)
 {
     uint16_t cnt_total = 0;
     uint8_t level;
     uint16_t freq;
+    uint16_t meas_freq;
+    uint8_t vpp;
     float voltage;
     uint16_t adc_int;
 
     OLED_Init();
     KEY_Init();
-    PWM_Init(500, 1650);
+    PWM_Init(1000, 1650);
     MCP4131_Init();
     MYADC_Init();
+    FreqMeter_Init();
 
-    level = MCP4131_GetLevel();
-    freq = PWM_GetFrequency();
+    level   = MCP4131_GetLevel();
+    vpp     = MCP4131_GetVoltageVpp();
+    freq    = PWM_GetFrequency();
+    meas_freq = FreqMeter_GetFrequency();
 
     /* ── 初始显示 ── */
     OLED_Clear();
 
-    /* y=0: 幅值：xxx */
+    /* y=0: 幅值：xxV */
     OLED_ShowChinese(0, 0, CH_FU);
     OLED_ShowChinese(16, 0, CH_ZHI);
     OLED_ShowChinese(32, 0, CH_COLON);
-    OLED_ShowNum(48, 0, level, 3);
+    OLED_ShowNum(48, 0, vpp, 2);
+    OLED_ShowChar(64, 0, 'V');
 
     /* y=2: 频率：xxxxHz */
     OLED_ShowChinese(0, 2, CH_PIN);
     OLED_ShowChinese(16, 2, CH_LV);
     OLED_ShowChinese(32, 2, CH_COLON);
-    OLED_ShowNum(48, 2, freq, 4);
+    OLED_ShowNum(48, 2, meas_freq, 4);
     OLED_ShowString(80, 2, "Hz");
 
     /* y=4: 直流电压：x.xxV */
@@ -117,25 +124,28 @@ int main(void)
         }
 
         /* 读取当前值（不依赖按键） */
-        level   = MCP4131_GetLevel();
-        freq    = PWM_GetFrequency();
-        voltage = MYADC_GetVoltage();
+        level     = MCP4131_GetLevel();
+        vpp       = MCP4131_GetVoltageVpp();
+        freq      = PWM_GetFrequency();
+        meas_freq = FreqMeter_GetFrequency();
+        voltage   = MYADC_GetVoltage();
         adc_int = (uint16_t)(voltage * 100.0f + 0.5f);
 
         /* ── 刷新 OLED ── */
         OLED_Clear();
 
-        /* y=0: 幅值：xxx */
+        /* y=0: 幅值：xxV */
         OLED_ShowChinese(0, 0, CH_FU);
         OLED_ShowChinese(16, 0, CH_ZHI);
         OLED_ShowChinese(32, 0, CH_COLON);
-        OLED_ShowNum(48, 0, level, 3);
+        OLED_ShowNum(48, 0, vpp, 2);
+        OLED_ShowChar(64, 0, 'V');
 
         /* y=2: 频率：xxxxHz */
         OLED_ShowChinese(0, 2, CH_PIN);
         OLED_ShowChinese(16, 2, CH_LV);
         OLED_ShowChinese(32, 2, CH_COLON);
-        OLED_ShowNum(48, 2, freq, 4);
+        OLED_ShowNum(48, 2, meas_freq, 4);
         OLED_ShowString(80, 2, "Hz");
 
         /* y=4: 直流电压：x.xxV */

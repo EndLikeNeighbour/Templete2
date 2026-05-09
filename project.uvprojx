@@ -763,6 +763,21 @@
               <FileType>5</FileType>
               <FilePath>.\Hardware\mcp4131.h</FilePath>
             </File>
+            <File>
+              <FileName>freqmeter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\freqmeter.c</FilePath>
+            </File>
+            <File>
+              <FileName>freqmeter.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\freqmeter.h</FilePath>
+            </File>
+            <File>
+              <FileName>font_index.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\font_index.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
