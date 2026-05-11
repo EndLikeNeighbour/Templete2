@@ -37,19 +37,36 @@ void FreqMeter_Init(void)
 
 uint16_t FreqMeter_GetFrequency(void)
 {
-    static uint16_t prev_cap = 0;
-    static uint16_t freq = 0;
+    uint16_t cap1, cap2;
+    uint16_t period;
 
-    if(TIM_GetFlagStatus(TIM3, TIM_FLAG_CC2) == SET)
+    /* 等第一个上升沿（超时 25ms） */
+    TIM_ClearFlag(TIM3, TIM_FLAG_CC2);
     {
-        TIM_ClearFlag(TIM3, TIM_FLAG_CC2);
-        uint16_t cap = TIM_GetCapture2(TIM3);
-        uint16_t period = cap - prev_cap;
-        prev_cap = cap;
-
-        if(period > 0)
-            freq = 1000000 / period;  /* 1MHz / period_ticks */
+        uint16_t start = TIM3->CNT;
+        while(!TIM_GetFlagStatus(TIM3, TIM_FLAG_CC2))
+        {
+            if((uint16_t)(TIM3->CNT - start) > 25000)
+                return 0;  /* 无信号 */
+        }
     }
+    cap1 = TIM_GetCapture2(TIM3);
+    TIM_ClearFlag(TIM3, TIM_FLAG_CC2);
 
-    return freq;
+    /* 等第二个上升沿（超时 25ms） */
+    {
+        uint16_t start = TIM3->CNT;
+        while(!TIM_GetFlagStatus(TIM3, TIM_FLAG_CC2))
+        {
+            if((uint16_t)(TIM3->CNT - start) > 25000)
+                return 0;
+        }
+    }
+    cap2 = TIM_GetCapture2(TIM3);
+    TIM_ClearFlag(TIM3, TIM_FLAG_CC2);
+
+    period = cap2 - cap1;
+    if(period > 0)
+        return 1000000 / period;
+    return 0;
 }

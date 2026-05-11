@@ -38,7 +38,14 @@ void MYADC_Init(void)
 
 float MYADC_GetVoltage(void)
 {
-    while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC));
-    uint16_t adc_value = ADC_GetConversionValue(ADC1);
-    return (adc_value * 3.3f) / 4095.0f;
+    uint32_t sum = 0;
+    uint8_t i;
+
+    for(i = 0; i < 128; i++)
+    {
+        while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC));
+        sum += ADC_GetConversionValue(ADC1);
+    }
+
+    return ((sum >> 7) * 3.3f) / 4095.0f;
 }

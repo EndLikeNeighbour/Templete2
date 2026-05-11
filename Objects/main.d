@@ -18,3 +18,4 @@
 .\objects\main.o: .\Hardware\pwm.h
 .\objects\main.o: .\Hardware\mcp4131.h
 .\objects\main.o: .\Hardware\adc.h
+.\objects\main.o: .\Hardware\freqmeter.h

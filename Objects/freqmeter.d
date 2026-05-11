@@ -1,0 +1,14 @@
+.\objects\freqmeter.o: Hardware\freqmeter.c
+.\objects\freqmeter.o: Hardware\freqmeter.h
+.\objects\freqmeter.o: .\Startup\stm32f10x.h
+.\objects\freqmeter.o: .\Startup\core_cm3.h
+.\objects\freqmeter.o: F:\ProgramFiles\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+.\objects\freqmeter.o: .\Startup\system_stm32f10x.h
+.\objects\freqmeter.o: .\User\stm32f10x_conf.h
+.\objects\freqmeter.o: .\Library\stm32f10x_adc.h
+.\objects\freqmeter.o: .\Startup\stm32f10x.h
+.\objects\freqmeter.o: .\Library\stm32f10x_gpio.h
+.\objects\freqmeter.o: .\Library\stm32f10x_i2c.h
+.\objects\freqmeter.o: .\Library\stm32f10x_rcc.h
+.\objects\freqmeter.o: .\Library\stm32f10x_tim.h
+.\objects\freqmeter.o: .\Library\misc.h
