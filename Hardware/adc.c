@@ -113,12 +113,12 @@ float MYADC_GetConvertedVoltage(void)
 
 float MYADC_GetVpp(void)
 {
-    uint16_t samples[32];
+    uint16_t samples[16];
     
     vpp_max_value = 0;
     vpp_min_value = 4095;
     
-    for(uint8_t i = 0; i < 32; i++)
+    for(uint8_t i = 0; i < 16; i++)
     {
         samples[i] = ADC_ReadChannel(ADC_Channel_8);
         
@@ -126,7 +126,7 @@ float MYADC_GetVpp(void)
         if(samples[i] < vpp_min_value) vpp_min_value = samples[i];
     }
     
-    float vpp_adc = (vpp_max_value - vpp_min_value) * 3.3f / 4095.0f;
+    float vpp_adc = (vpp_max_value) * 3.3f / 4095.0f;
     float vin = (vpp_adc - 1.65f) / 0.3f * 2.0f;
     
     return vin;

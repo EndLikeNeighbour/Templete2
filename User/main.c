@@ -53,11 +53,11 @@ int main(void)
     OLED_ShowString(72, 0, "V");
     current_vpp = MYADC_GetVpp();
     uint16_t vpp_int = (uint16_t)(current_vpp * 100.0f + 0.5f);
-    OLED_ShowString(80, 0, "(Vpp:");
-    OLED_ShowNum(88, 0, vpp_int / 100, 1);
-    OLED_ShowChar(96, 0, '.');
-    OLED_ShowNum(104, 0, vpp_int % 100, 2);
-    OLED_ShowString(112, 0, ")");
+    OLED_ShowString(80, 0, "(");
+    OLED_ShowNum(88, 0, vpp_int / 100, 2);
+    OLED_ShowChar(104, 0, '.');
+    OLED_ShowNum(112, 0, (vpp_int % 100) / 10, 1);
+    OLED_ShowString(120, 0, ")");
 		
     /* y=2: 频率：xxxxHz */
     OLED_ShowChinese(0, 2, CH_PIN);
@@ -207,11 +207,11 @@ int main(void)
 				OLED_ShowNum(64, 0, current_amp % 100, 2);
 				OLED_ShowString(72, 0, "V");
         uint16_t vpp_int = (uint16_t)(current_vpp * 100.0f + 0.5f);
-        OLED_ShowString(80, 0, "(Vpp:");
-        OLED_ShowNum(88, 0, vpp_int / 100, 1);
-        OLED_ShowChar(96, 0, '.');
-        OLED_ShowNum(104, 0, vpp_int % 100, 2);
-        OLED_ShowString(112, 0, ")");
+        OLED_ShowString(80, 0, "(");
+        OLED_ShowNum(88, 0, vpp_int / 100, 2);
+        OLED_ShowChar(104, 0, '.');
+        OLED_ShowNum(112, 0, (vpp_int % 100) / 10, 1);
+        OLED_ShowString(120, 0, ")");
 
         /* y=2: 频率：xxxxHz */
         OLED_ShowChinese(0, 2, CH_PIN);
