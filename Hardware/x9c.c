@@ -24,6 +24,21 @@ void X9C_Init(void)
     GPIO_SetBits(X9C_PORT, X9C_UD_PIN);
     GPIO_ResetBits(X9C_PORT, X9C_CLK_PIN);
 
+    /* 先拉到已知端点(0Ω): 向VL方向发105个脉冲，确保触底 */
+    GPIO_ResetBits(X9C_PORT, X9C_UD_PIN);
+    GPIO_ResetBits(X9C_PORT, X9C_CS_PIN);
+    X9C_DelayUs(10);
+    for(uint8_t i = 0; i < 105; i++)
+    {
+        GPIO_SetBits(X9C_PORT, X9C_CLK_PIN);
+        X9C_DelayUs(10);
+        GPIO_ResetBits(X9C_PORT, X9C_CLK_PIN);
+        X9C_DelayUs(10);
+    }
+    GPIO_SetBits(X9C_PORT, X9C_CS_PIN);
+    X9C_DelayUs(10);
+
+    current_resistance = 0;
     X9C_SetResistance(5500);
 }
 

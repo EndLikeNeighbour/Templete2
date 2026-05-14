@@ -503,7 +503,7 @@ I (.\Library\stm32f10x_tim.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 F (.\Hardware\freqmeter.h)(0x69FEEC5F)()
 F (.\Hardware\font_index.h)(0x69FDDFC6)()
-F (.\Hardware\x9c.c)(0x6A05C399)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\User -I .\Library -I .\Startup -I .\Hardware-IF:\ProgramFiles\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="537" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\x9c.o --omf_browse .\objects\x9c.crf --depend .\objects\x9c.d)
+F (.\Hardware\x9c.c)(0x6A05D928)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\User -I .\Library -I .\Startup -I .\Hardware-IF:\ProgramFiles\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="537" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\x9c.o --omf_browse .\objects\x9c.crf --depend .\objects\x9c.d)
 I (Hardware\x9c.h)(0x6A05C38E)
 I (.\Startup\stm32f10x.h)(0x4D783CB4)
 I (.\Startup\core_cm3.h)(0x4D523B58)
