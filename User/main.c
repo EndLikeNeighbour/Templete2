@@ -4,42 +4,61 @@
 #include "delay.h"
 #include "font_index.h"
 #include "pwm.h"
-#include "mcp4131.h"
+#include "x9c.h"
 #include "adc.h"
 #include "freqmeter.h"
 
+uint16_t current_amp = 300;
+
 int main(void)
 {
-    uint16_t cnt_total = 0;
-    uint8_t level;
+    
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+    GPIO_InitTypeDef GPIO_InitStructure;
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+    GPIO_SetBits(GPIOA, GPIO_Pin_4);
+	
+		uint16_t cnt_total = 0;
     uint16_t freq;
     uint16_t meas_freq;
-    uint8_t vpp;
     float voltage;
     uint16_t adc_int;
+    uint8_t adc_update_counter = 0;
+    float current_vpp = 0.0f;
+    uint16_t current_resistance = 5500;
 
     OLED_Init();
     KEY_Init();
     PWM_Init(1000, 1650);
-    MCP4131_Init();
+    X9C_Init();
     MYADC_Init();
     FreqMeter_Init();
 
-    level   = MCP4131_GetLevel();
-    vpp     = MCP4131_GetVoltageVpp();
     freq    = PWM_GetFrequency();
     meas_freq = FreqMeter_GetFrequency();
 
     /* ── 初始显示 ── */
     OLED_Clear();
 
-    /* y=0: 幅值：xxV */
+    /* y=0: 幅值：xxV (Vpp:x.xx) */
     OLED_ShowChinese(0, 0, CH_FU);
     OLED_ShowChinese(16, 0, CH_ZHI);
     OLED_ShowChinese(32, 0, CH_COLON);
-    OLED_ShowNum(48, 0, vpp, 2);
-    OLED_ShowChar(64, 0, 'V');
-
+		OLED_ShowNum(48, 0, current_amp / 100, 1);
+    OLED_ShowChar(56, 0, '.');
+    OLED_ShowNum(64, 0, current_amp % 100, 2);
+    OLED_ShowString(72, 0, "V");
+    current_vpp = MYADC_GetVpp();
+    uint16_t vpp_int = (uint16_t)(current_vpp * 100.0f + 0.5f);
+    OLED_ShowString(80, 0, "(Vpp:");
+    OLED_ShowNum(88, 0, vpp_int / 100, 1);
+    OLED_ShowChar(96, 0, '.');
+    OLED_ShowNum(104, 0, vpp_int % 100, 2);
+    OLED_ShowString(112, 0, ")");
+		
     /* y=2: 频率：xxxxHz */
     OLED_ShowChinese(0, 2, CH_PIN);
     OLED_ShowChinese(16, 2, CH_LV);
@@ -77,18 +96,57 @@ int main(void)
         for(uint8_t i = 0; i < 50; i++)
         {
             key_state key = KEY_Scan();
+						uint8_t updated = 0;
 
             if(key != KEY_NONE)
             {
                 switch(key)
                 {
                     case KEY_AMP_UP:
-                        MCP4131_Increase();
-                        cnt_total++;
+											if(current_amp <= 450 && current_resistance <= 9100)
+                      {
+                        current_amp += 50;  // 每次加0.5V
+                        current_resistance += 900;  // 每次加0.9kΩ
+                        X9C_Increase(900);
+                        
+                        OLED_ShowNum(48, 0, current_amp / 100, 1);
+                        OLED_ShowChar(56, 0, '.');
+                        OLED_ShowNum(64, 0, current_amp % 100, 2);
+                        OLED_ShowString(72, 0, "V");
+                        
+                        OLED_ShowNum(48, 4, current_resistance / 1000, 1);
+                        OLED_ShowChar(56, 4, '.');
+                        OLED_ShowNum(64, 4, (current_resistance % 1000) / 100, 1);
+                        OLED_ShowString(72, 4, "k");
+                        OLED_ShowString(80, 4, "Ohm");
+                        
+                        OLED_Refresh();
+                        updated = 1;
+                      }
+                      cnt_total++;
                         break;
 
                     case KEY_AMP_DOWN:
-                        MCP4131_Decrease();
+											if(current_amp >= 100 && current_resistance >= 900)
+                      {
+                        current_amp -= 50;  // 每次减0.5V
+                        current_resistance -= 900;  // 每次减0.9kΩ
+                        X9C_Decrease(900);
+                        
+                        OLED_ShowNum(48, 0, current_amp / 100, 1);
+                        OLED_ShowChar(56, 0, '.');
+                        OLED_ShowNum(64, 0, current_amp % 100, 2);
+                        OLED_ShowString(72, 0, "V");
+                        
+                        OLED_ShowNum(48, 4, current_resistance / 1000, 1);
+                        OLED_ShowChar(56, 4, '.');
+                        OLED_ShowNum(64, 4, (current_resistance % 1000) / 100, 1);
+                        OLED_ShowString(72, 4, "k");
+                        OLED_ShowString(80, 4, "Ohm");
+                        
+                        OLED_Refresh();
+                        updated = 1;
+                      }
                         cnt_total++;
                         break;
 
@@ -117,29 +175,43 @@ int main(void)
                     default:
                         break;
                 }
-                break;  /* 有按键 → 提前退出延时循环，立即刷新 */
+                 /* 有按键 → 提前退出延时循环，立即刷新 */
+								break;
             }
 
-            Delay_ms(10);
+            Delay_ms(5);
         }
 
         /* 读取当前值（不依赖按键） */
-        level     = MCP4131_GetLevel();
-        vpp       = MCP4131_GetVoltageVpp();
         freq      = PWM_GetFrequency();
         meas_freq = FreqMeter_GetFrequency();
-        voltage   = MYADC_GetVoltage();
-        adc_int = (uint16_t)(voltage * 100.0f + 0.5f);
+        
+        adc_update_counter++;
+        if(adc_update_counter >= 3)
+        {
+            adc_update_counter = 0;
+            voltage   = MYADC_GetVoltage();
+            current_vpp = MYADC_GetVpp();
+            adc_int = (uint16_t)(voltage * 100.0f + 0.5f);
+        }
 
         /* ── 刷新 OLED ── */
         OLED_Clear();
 
-        /* y=0: 幅值：xxV */
+        /* y=0: 幅值：xxV (Vpp:x.xx) */
         OLED_ShowChinese(0, 0, CH_FU);
         OLED_ShowChinese(16, 0, CH_ZHI);
         OLED_ShowChinese(32, 0, CH_COLON);
-        OLED_ShowNum(48, 0, vpp, 2);
-        OLED_ShowChar(64, 0, 'V');
+        OLED_ShowNum(48, 0, current_amp / 100, 1);
+				OLED_ShowChar(56, 0, '.');
+				OLED_ShowNum(64, 0, current_amp % 100, 2);
+				OLED_ShowString(72, 0, "V");
+        uint16_t vpp_int = (uint16_t)(current_vpp * 100.0f + 0.5f);
+        OLED_ShowString(80, 0, "(Vpp:");
+        OLED_ShowNum(88, 0, vpp_int / 100, 1);
+        OLED_ShowChar(96, 0, '.');
+        OLED_ShowNum(104, 0, vpp_int % 100, 2);
+        OLED_ShowString(112, 0, ")");
 
         /* y=2: 频率：xxxxHz */
         OLED_ShowChinese(0, 2, CH_PIN);

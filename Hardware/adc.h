@@ -5,5 +5,7 @@
 
 void MYADC_Init(void);
 float MYADC_GetVoltage(void);
+float MYADC_GetConvertedVoltage(void);
+float MYADC_GetVpp(void);
 
 #endif

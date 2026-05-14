@@ -778,6 +778,16 @@
               <FileType>5</FileType>
               <FilePath>.\Hardware\font_index.h</FilePath>
             </File>
+            <File>
+              <FileName>x9c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\x9c.c</FilePath>
+            </File>
+            <File>
+              <FileName>x9c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\x9c.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
